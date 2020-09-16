@@ -1,0 +1,34 @@
+{
+  "name": "setsuna",
+  "version": "1.0.0",
+  "description": "Setsuna is a package designed to make storing both persistent and temporary configuration data easy.",
+  "main": "src/index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon dev/test.js"
+  },
+  "keywords": [
+    "setsuna",
+    "set suna",
+    "set",
+    "suna",
+    "settings",
+    "setting",
+    "config",
+    "configuration",
+    "storage"
+  ],
+  "author": "",
+  "author-2": "",
+  "license": "ISC",
+  "homepage": "https://github.com/atomic-addison/setsuna",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atomic-addison/setsuna"
+  },
+  "bugs": {
+    "url": "https://github.com/atomic-addison/setsuna"
+  },
+  "deprecated": false
+}
