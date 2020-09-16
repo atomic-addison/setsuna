@@ -12,8 +12,6 @@ module.exports = class Setsuna {
 
 		this.dirname = data.dirname || '.' + basename(process.argv[1]) + '_settings';
 		this.home_dir = join(this.dirpath, this.dirname);
-		
-		this.test = true;
 	}
 
 	init(callback){
