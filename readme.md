@@ -1,3 +1,12 @@
+# Setsuna
+[![](https://img.shields.io/npm/v/setsuna?label=Latest%20Version&style=for-the-badge&logo=npm&color=informational)](https://www.npmjs.com/package/setsuna)
+[![](https://img.shields.io/static/v1?label=Creator&message=atomic-addison&color=informational&style=for-the-badge)](https://github.com/atomic-addison)
+
+## Install
+```js
+npm i setsuna --save
+```
+
 ## Setup
 
 In order to use Setsuna in your project you first need to import it:
