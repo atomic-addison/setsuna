@@ -17,9 +17,11 @@
     "setting",
     "config",
     "configuration",
-    "storage"
+    "storage",
+    "localstorage",
+    "local storage"
   ],
-  "author": "",
+  "author": "atomic-addison",
   "author-2": "",
   "license": "ISC",
   "homepage": "https://github.com/atomic-addison/setsuna",
