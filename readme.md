@@ -66,7 +66,7 @@ setsuna.init({ error } => {
 ```
 In order to work, Setsuna needs to create a working directory and a default settings file. Call `setsuna.init` at the start of the project in order to prepare Setsuna for work.
 
-Outside of persistent mode `setsuna.init` creates the default objects for temporary data storage;
+Outside of persistent mode `setsuna.init` creates the default objects for temporary data storage.
 
 `setsuna.set`
 
@@ -76,7 +76,7 @@ setsuna.set("property", "value", ({ error }) => {
 });
 ```
 
-To save any data to the default settings file, you need to call `setsuna.set`. This method creates a property with your data. Specify the **property** and the **value** you want it to have.
+To save any data to the default settings file (or to the temporary storage object if you're not running in persistent mode), you need to call `setsuna.set`. This method creates a property with your data. Specify the **property** and the **value** you want it to have.
 
 `setsuna.unset`
 
@@ -86,7 +86,7 @@ setsuna.unset("property", ({ error }) => {
 });
 ```
 
-To remove any data from the default settings file, you need to call `setsuna.unset`. This method deletes the **property** you have specified.
+To remove any data from the default settings file/storage object, you need to call `setsuna.unset`. This method deletes the **property** you have specified.
 
 `setsuna.get`
 ```js
@@ -110,7 +110,7 @@ setsuna.writeData({
 });
 ```
 
-Setsuna can also write your data to a separate file. Call `setsuna.writeData` and pass it an object where you specify the **filename** you want to create with your **data**. The **force** option enables you to overwrite the file if it exists when the option is set to **true**.
+Setsuna can also write your data to a separate file. Call `setsuna.writeData` and pass it an object where you specify the **filename** you want to create with your **data**. The **force** option enables you to overwrite the file if it exists when the option is set to **true**. If not in persistent mode, Setsuna will save all the data to a separate object property.
 
 `setsuna.readData`
 ```js
@@ -121,7 +121,7 @@ setsuna.readData("filename.json", ({ data, error }) => {
 });
 ```
 
-To read your created files, simply call `setsuna.readData` and pass it the **filename** you have previously created.
+To read your created file/storage object, simply call `setsuna.readData` and pass it the **filename** you have previously created.
 
 `setsuna.deleteData`
 ```js
@@ -132,7 +132,7 @@ setsuna.deleteData("filename.json", ({ error }) => {
 });
 ```
 
-If you need to remove your created file, call `setsuna.deleteData` and pass it the **filename** you have previously created.
+If you need to remove your created file/storage object, call `setsuna.deleteData` and pass it the **filename** you have previously created.
 
 ### Here is a list of all synchronous methods:
 
