@@ -86,7 +86,7 @@ setsuna.unset("property", ({ error }) => {
 });
 ```
 
-To remove any data from the default settings file, you need to call `setsuna.unset`. This method deleted the **property** you have specified.
+To remove any data from the default settings file, you need to call `setsuna.unset`. This method deletes the **property** you have specified.
 
 `setsuna.get`
 ```js
