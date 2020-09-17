@@ -1,7 +1,6 @@
-const { mkdir, mkdirSync, existsSync, writeFileSync, open, writeFile, readFile, readFileSync } = require('fs');
+const { mkdir, mkdirSync, existsSync, writeFileSync, open, writeFile, readFile, readFileSync, unlink, unlinkSync } = require('fs');
 const { join, basename } = require('path');
 const { homedir } = require('os');
-const { promisify } = require('util');
 
 module.exports = class Setsuna {
 	constructor(data) {
@@ -75,6 +74,14 @@ module.exports = class Setsuna {
 		if(!this.persistent) return this.settings.files[filename];
 
 		return JSON.parse(readFileSync(join(this.home_dir, filename)));
+	}
+	
+	deleteDataSync(filename){
+		if(!this.persistent) delete this.settings.files[filename];
+		
+		if(existsSync(join(this.home_dir, filename))) {
+			unlinkSync(join(this.home_dir, filename));
+		}
 	}
 
 	writeData(rules, callback){
@@ -154,6 +161,35 @@ module.exports = class Setsuna {
 		});
 	}
 
+	deleteData(filename, callback){
+		if (!callback) {
+			return new Promise((resolve, reject) => {
+				this._deleteData(filename, ({ success, error }) => {
+					if (error) return reject(new Error(error));
+					resolve(data);
+				});
+			});
+		} else {
+			if (callback && typeof callback != 'function') throw new TypeError(`Recieved type ${typeof(callback)} expected function`);
+			return this._deleteData(filename, callback);
+		};
+	}
+
+	_deleteData(filename, callback){
+		if(!this.persistent) {
+			delete this.settings.files[filename];
+
+			callback({ success: true });
+			return;
+		}
+
+		unlink(join(this.home_dir, filename), error => {            
+			if(error) callback({ error });
+			
+			if (callback) callback({ success: true });
+		});  
+	}
+
 	set(parameter, value, callback){
 		if (!callback) {
 			return new Promise((resolve, reject) => {
@@ -179,6 +215,42 @@ module.exports = class Setsuna {
 
 		this.readData('settings.json', ({ data, error }) => {
 			data[parameter] = value;
+			this.writeData({
+				data: data,
+				force: true,
+				filename: "settings.json"
+			}, () => {
+				callback({ success: true });
+			});
+		});
+	}
+
+	unset(parameter, callback){
+		if (!callback) {
+			return new Promise((resolve, reject) => {
+				this._unset(parameter, ({ success, error }) => {
+					if (error) return reject(new Error(error));
+					resolve();
+				});
+			});
+		} else {
+			if (callback && typeof callback != 'function') throw new TypeError(`Recieved type ${typeof(callback)} expected function`);
+			return this._unset(parameter, callback);
+		};
+	}
+
+	_unset(parameter, callback){
+		if(!this.persistent) {
+			delete this.settings[parameter];
+
+			callback({ success: true });
+
+			return;
+		}
+
+		this.readData('settings.json', ({ data, error }) => {
+			delete data[parameter];
+
 			this.writeData({
 				data: data,
 				force: true,
@@ -221,6 +293,20 @@ module.exports = class Setsuna {
 		var data = this.readDataSync('settings.json');
 
 		data[parameter] = value;
+
+		this.writeDataSync({
+			data: data,
+			force: true,
+			filename: "settings.json"
+		});
+	}
+	
+	unsetSync(parameter){
+		if(!this.persistent) delete this.settings[parameter];
+
+		var data = this.readDataSync('settings.json');
+
+		delete data[parameter];
 
 		this.writeDataSync({
 			data: data,

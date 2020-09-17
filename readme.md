@@ -78,6 +78,16 @@ setsuna.set("property", "value", ({ error }) => {
 
 To save any data to the default settings file, you need to call `setsuna.set`. This method creates a property with your data. Specify the **property** and the **value** you want it to have.
 
+`setsuna.unset`
+
+```js
+setsuna.unset("property", ({ error }) => {
+    if (error) return console.log("ERROR", error);
+});
+```
+
+To remove any data from the default settings file, you need to call `setsuna.unset`. This method deleted the **property** you have specified.
+
 `setsuna.get`
 ```js
 setsuna.get("property", ({ data, error }) => {
@@ -95,10 +105,8 @@ setsuna.writeData({
     data: {"your" : "data_to_write"}, 
     force: false, 
     filename: "filename.json"
-}, ({ data, error }) => {
+}, ({ error }) => {
     if (error) return console.log("ERROR", error);
-
-    console.log(data);
 });
 ```
 
@@ -115,6 +123,17 @@ setsuna.readData("filename.json", ({ data, error }) => {
 
 To read your created files, simply call `setsuna.readData` and pass it the **filename** you have previously created.
 
+`setsuna.deleteData`
+```js
+setsuna.deleteData("filename.json", ({ error }) => {
+    if (error) return console.log("ERROR", error);
+
+    console.log(data);
+});
+```
+
+If you need to remove your created file, call `setsuna.deleteData` and pass it the **filename** you have previously created.
+
 ### Here is a list of all synchronous methods:
 
 `setsuna.init`
@@ -127,6 +146,13 @@ Just like the asynchronous method, but no callback.
 `setsuna.setSync`
 ```js
 setsuna.setSync("parameter", "value");
+```
+
+Just like the asynchronous method, but no callback.
+
+`setsuna.unsetSync`
+```js
+setsuna.unsetSync("parameter");
 ```
 
 Just like the asynchronous method, but no callback.
@@ -152,6 +178,13 @@ Just like the asynchronous method, but no callback.
 `setsuna.readDataSync`
 ```js
 setsuna.readDataSync("filename.json");
+```
+
+Just like the asynchronous method, but no callback.
+
+`setsuna.deleteDataSync`
+```js
+setsuna.deleteDataSync("filename.json");
 ```
 
 Just like the asynchronous method, but no callback.
