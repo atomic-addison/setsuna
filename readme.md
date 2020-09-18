@@ -127,8 +127,6 @@ To read your created file/storage object, simply call `setsuna.readData` and pas
 ```js
 setsuna.deleteData("filename.json", ({ error }) => {
     if (error) return console.log("ERROR", error);
-
-    console.log(data);
 });
 ```
 
