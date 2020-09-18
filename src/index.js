@@ -51,8 +51,8 @@ module.exports = class Setsuna {
 			return;
 		}
 
-		if (!fs.existsSync(this.home_dir)){
-		    fs.mkdirSync(this.home_dir);
+		if (!existsSync(this.home_dir)){
+		    mkdirSync(this.home_dir);
 		}
 
 		this.writeDataSync({
