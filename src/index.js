@@ -151,7 +151,7 @@ module.exports = class Setsuna {
 		};
 
 		readFile(join(this.home_dir, filename), 'utf8', (error, contents) => {
-			if (error) callback({ error });
+			if (error) return callback({ error });
 			try{
 				callback({ data: JSON.parse(contents) });
 			}
