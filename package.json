@@ -1,6 +1,6 @@
 {
   "name": "setsuna",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Setsuna is a package designed to make storing both persistent and temporary configuration data easy.",
   "main": "src/index.js",
   "dependencies": {},
