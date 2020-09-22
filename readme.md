@@ -103,14 +103,15 @@ To get the data you saved to Setsuna, you need to call `setsuna.get` and specify
 ```js
 setsuna.writeData({ 
     data: {"your" : "data_to_write"}, 
-    force: false, 
+    force: false,
+    spacing: 0,
     filename: "filename.json"
 }, ({ error }) => {
     if (error) return console.log("ERROR", error);
 });
 ```
 
-Setsuna can also write your data to a separate file. Call `setsuna.writeData` and pass it an object where you specify the **filename** you want to create with your **data**. The **force** option enables you to overwrite the file if it exists when the option is set to **true**. If not in persistent mode, Setsuna will save all the data to a separate object property.
+Setsuna can also write your data to a separate file. Call `setsuna.writeData` and pass it an object where you specify the **filename** you want to create with your **data**. The **force** option enables you to overwrite the file if it exists when the option is set to **true**. Additionally, you can specify the **spacing** option if you want your JSON to be pretty printed. If not in persistent mode, Setsuna will save all the data to a separate object property.
 
 `setsuna.readData`
 ```js
@@ -167,6 +168,7 @@ Just like the asynchronous method, but no callback.
 setsuna.writeDataSync({ 
     data: {"your" : "data_to_write"}, 
     force: false, 
+    spacing: 0,
     filename: "filename.json"
 });
 ```

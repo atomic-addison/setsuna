@@ -66,7 +66,7 @@ module.exports = class Setsuna {
 		if(!this.persistent) return this.settings.files[rules.filename] = rules.data;
 		
 		if(!existsSync(join(this.home_dir, rules.filename)) || rules.force) {
-			writeFileSync(join(this.home_dir, rules.filename), JSON.stringify(rules.data));
+			writeFileSync(join(this.home_dir, rules.filename), JSON.stringify(rules.data, null, rules.spacing));
 		}
 	}
 
@@ -108,7 +108,7 @@ module.exports = class Setsuna {
 
 		open(join(this.home_dir, rules.filename), 'r', (err, fd) =>{
 			if (err) {
-				writeFile(join(this.home_dir, rules.filename), JSON.stringify(rules.data), error => {
+				writeFile(join(this.home_dir, rules.filename), JSON.stringify(rules.data, null, rules.spacing), error => {
 					if(error) callback({ error });
 
 					if (callback) callback({ success: true });
