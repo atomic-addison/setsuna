@@ -116,7 +116,7 @@ module.exports = class Setsuna {
 			}
 			else {
 				if (rules.force) {
-					writeFile(join(this.home_dir, rules.filename), JSON.stringify(rules.data), error => {
+					writeFile(join(this.home_dir, rules.filename), JSON.stringify(rules.data, null, rules.spacing), error => {
 						if(error) callback({ error });
 
 						if (callback) callback({ success: true });
