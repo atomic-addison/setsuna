@@ -60,7 +60,7 @@ Once you set up all your settings, you are ready to work with Setsuna. You have 
 
 `setsuna.init`
 ```js
-setsuna.init({ error } => {
+setsuna.init(({ error }) => {
     if (error) return console.log("ERROR", error);
 });
 ```
